@@ -42,7 +42,7 @@ fun MyApp(modifier: Modifier = Modifier) {
     ) {
         Column {
             Header(modifier = Modifier)
-            OutPutCalcState(modifier = Modifier)
+            OutPutCalcScreen(modifier = Modifier)
         }
     }
 
@@ -70,21 +70,18 @@ fun Header(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun OutPutCalcState(modifier: Modifier = Modifier) {
+fun OutPutCalcScreen(modifier: Modifier = Modifier) {
     Surface(
-        modifier.fillMaxWidth(),
-        color = MaterialTheme.colorScheme.secondary,
-
-
-        ) {
+        modifier.fillMaxWidth()
+    ) {
         Text(
             text = "1103865",
             modifier = modifier
-                .padding(vertical = 80.dp, horizontal = 10.dp)
                 .background(
                     color = MaterialTheme.colorScheme.secondary,
                     shape = RoundedCornerShape(0.dp, 0.dp, 28.dp, 28.dp)
-                ),
+                )
+                .padding(vertical = 80.dp, horizontal = 10.dp),
             style = MaterialTheme.typography.displayMedium.copy(
                 fontWeight = FontWeight.ExtraBold
             ),
@@ -98,8 +95,6 @@ fun OutPutCalcState(modifier: Modifier = Modifier) {
 @Composable
 fun DefaultPreview() {
     CalculatorTheme {
-//        Greeting("Android")
-        Header()
         MyApp(modifier = Modifier)
     }
 
@@ -109,9 +104,16 @@ fun DefaultPreview() {
 @Composable
 fun HeaderPreview() {
     CalculatorTheme {
-//        Greeting("Android")
-        Header()
         Header(modifier = Modifier)
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OutPutCalcScreenPreview() {
+    CalculatorTheme {
+        OutPutCalcScreen(modifier = Modifier)
     }
 
 }
