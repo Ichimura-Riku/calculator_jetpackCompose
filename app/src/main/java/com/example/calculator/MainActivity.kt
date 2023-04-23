@@ -1,7 +1,9 @@
 package com.example.calculator
 
+import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.preference.PreferenceActivity.Header
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -43,6 +45,7 @@ fun MyApp(modifier: Modifier = Modifier) {
         Column {
             Header(modifier = Modifier)
             OutPutCalcScreen(modifier = Modifier)
+            OnButtonScreen(modifier = Modifier)
         }
     }
 
@@ -90,6 +93,44 @@ fun OutPutCalcScreen(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun OnButtonScreen(modifier: Modifier = Modifier) {
+    val calcKeyList:Array<Array<String>> = arrayOf(
+        arrayOf("ac", "^", "%", "÷"),
+        arrayOf("7", "8", "9", "x"),
+        arrayOf("4", "5", "6", "-"),
+        arrayOf("1", "2", "3", "+"),
+        arrayOf("0", ".", "←", "=")
+    )
+
+    Column(
+        modifier = modifier.padding(vertical = 6.dp)
+    ) {
+        for (i in 0..4 ) {
+            Row(
+                modifier = modifier.padding(horizontal = 6.dp)
+            ) {
+                for (j in 0..3){
+//                    CalcKey(CalcKeyList[i][j])
+                    Text(
+                        text = calcKeyList[i][j],
+                        modifier = modifier
+                            .background(
+                                color = MaterialTheme.colorScheme.tertiary,
+                                shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp)
+                            )
+                            .padding(vertical = 15.dp, horizontal = 15.dp),
+                        style = MaterialTheme.typography.displayMedium.copy(
+                            fontWeight = FontWeight.ExtraBold
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
@@ -114,6 +155,15 @@ fun HeaderPreview() {
 fun OutPutCalcScreenPreview() {
     CalculatorTheme {
         OutPutCalcScreen(modifier = Modifier)
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OnButtonScreenPreview() {
+    CalculatorTheme {
+        OnButtonScreen(modifier = Modifier)
     }
 
 }
